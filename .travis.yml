@@ -1,0 +1,21 @@
+language: go
+
+go:
+  - 1.7
+
+services:
+  - docker
+
+env:
+  - CGO_ENABLED=0 GOOS=linux GOARCH=amd64
+
+install:
+  - go get ./...
+
+script:
+  - go build -ldflags "-s -w"
+
+after_success:
+  - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+  - docker build -t sdrzlyz/xtunnel .
+  - docker push sdrzlyz/xtunnel
