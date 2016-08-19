@@ -12,10 +12,11 @@ import (
 	"log"
 	"log/syslog"
 	"os"
-	"github.com/elvizlai/xtunnel/proxy"
-	"github.com/elvizlai/xtunnel/tunnel"
 	"os/signal"
 	"syscall"
+
+	"github.com/elvizlai/xtunnel/proxy"
+	"github.com/elvizlai/xtunnel/tunnel"
 )
 
 var logTo string
