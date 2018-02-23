@@ -4,11 +4,11 @@ import (
 	"testing"
 )
 
-//func TestBlank(t *testing.T) {
-//	secret := []byte("testsecret")
-//	c := NewCipher("blank", secret)
-//	testCiphter(t, c, "blank")
-//}
+func TestBlank(t *testing.T) {
+	secret := []byte("testsecret")
+	c := NewCipher("blank", secret)
+	testCiphter(t, c, "blank")
+}
 
 func TestRC4(t *testing.T) {
 	secret := []byte("testsecret")
