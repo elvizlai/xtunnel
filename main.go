@@ -18,21 +18,21 @@ import (
 	"github.com/elvizlai/xtunnel/tunnel"
 )
 
-var logTo string
+var logTo string = "stdout"
 
-var mode string
-var laddr string
-var raddr string
-var cryptoMethod string
-var secret string
+var mode = "server"
+var laddr = "127.0.0.1:9000"
+var raddr = "127.0.0.1:9001"
+var cryptoMethod = "blank"
+var secret = "xtunnel"
 
 func init() {
-	flag.StringVar(&logTo, "logto", "stdout", "stdout or syslog")
-	flag.StringVar(&mode, "mode", "", "run mode: server, client")
-	flag.StringVar(&laddr, "listen", "127.0.0.1:9000", "xtunnel local listen")
-	flag.StringVar(&raddr, "remote", "127.0.0.1:9001", "xtunnel remote backend")
-	flag.StringVar(&cryptoMethod, "crypto", "rc4-md5", "encryption method: blank, rc4, rc4-md5, aes256cfb, chacha20, salsa20")
-	flag.StringVar(&secret, "secret", "xtunnel", "password used to encrypt data")
+	flag.StringVar(&mode, "mode", mode, "run mode: server, client")
+	flag.StringVar(&laddr, "listen", laddr, "xtunnel local listen")
+	flag.StringVar(&raddr, "backend", raddr, "xtunnel remote backend")
+	flag.StringVar(&cryptoMethod, "crypto", cryptoMethod, "encryption method: blank, rc4, rc4-md5, aes256cfb, chacha20, salsa20")
+	flag.StringVar(&secret, "secret", secret, "password used to encrypt data")
+	flag.StringVar(&logTo, "log", logTo, "stdout or syslog")
 	flag.Parse()
 }
 

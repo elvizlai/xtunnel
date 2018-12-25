@@ -38,9 +38,8 @@ func newStream(block cipher.Block, err error, key, iv []byte, doe DecOrEnc) (cip
 	}
 	if doe == Encrypt {
 		return cipher.NewCFBEncrypter(block, iv), nil
-	} else {
-		return cipher.NewCFBDecrypter(block, iv), nil
 	}
+	return cipher.NewCFBDecrypter(block, iv), nil
 }
 
 // Initializes the block cipher with CFB mode, returns IV.

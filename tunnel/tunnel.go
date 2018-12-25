@@ -39,9 +39,9 @@ func NewTunnel(faddr, baddr string, clientMode bool, cryptoMethod, secret string
 
 func (t *Tunnel) Run() {
 	if t.clientMode {
-		log.Printf("tunnel_client listen on '%s' with remote '%s'\n", t.faddr, t.baddr)
+		log.Printf("xtunnel client listen on '%s' with backend '%s'\n", t.faddr, t.baddr)
 	} else {
-		log.Printf("tunnel_server listen on '%s' with remote '%s'\n", t.faddr, t.baddr)
+		log.Printf("xtunnel server listen on '%s' with backend '%s'\n", t.faddr, t.baddr)
 	}
 	go t.Start()
 }
@@ -85,8 +85,7 @@ func (t *Tunnel) transport(conn net.Conn) {
 	readBytes = <-readChan
 	writeBytes = <-writeChan
 	transferTime := time.Now().Sub(start)
-	log.Printf("r:%d w:%d ct:%.3f t:%.3f [#%d]", readBytes, writeBytes,
-		connectTime.Seconds(), transferTime.Seconds(), t.sessionsCount)
+	log.Printf("r:%d w:%d ct:%.3f tt:%.3f [#%d]", readBytes, writeBytes, connectTime.Seconds(), transferTime.Seconds(), t.sessionsCount)
 	atomic.AddInt32(&t.sessionsCount, -1)
 }
 
